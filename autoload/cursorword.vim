@@ -34,7 +34,7 @@ function! cursorword#matchadd(arg, _) abort
   let w:cursorword_match = 0
   if !w:enable || word ==# '' || len(word) !=# strchars(word) && word !~# s:alphabets || len(word) > 1000 | return | endif
   let w:pattern = '\<' . escape(word, '~"\.^$[]*') . '\>'
-  let w:cursorword_id = matchadd('CursorWord', w:pattern, -1)
+  let w:cursorword_id = matchadd('CursorWord', w:pattern, -100)
   let w:cursorword_match = 1
 endfunction
 
