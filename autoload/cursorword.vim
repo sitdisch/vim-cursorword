@@ -6,6 +6,7 @@
 " =============================================================================
 
 let s:save_cpo = &cpo
+let s:updatetime = 300
 set cpo&vim
 
 function! cursorword#highlight() abort
@@ -21,7 +22,7 @@ function! cursorword#update(...) abort
   if !w:enable && !get(w:, 'cursorword_match') | return | endif
 
   let i = (a:0 ? a:1 : mode() ==# 'i' || mode() ==# 'R') && col('.') > 1
-  let s:deferred = timer_start(&updatetime, function('cursorword#matchadd', [i]))
+  let s:deferred = timer_start(s:updatetime, function('cursorword#matchadd', [i]))
 endfunction
 
 function! cursorword#matchadd(arg, _) abort
